@@ -224,16 +224,16 @@
         // set responses to local variables
         var name = $('#name').val().trim();
         var photo = $('#photo').val();
-        var item1 = parseInt($('#item1').val());
-        var item2 = parseInt($('#item2').val());
-        var item3 = parseInt($('#item3').val());
-        var item4 = parseInt($('#item4').val());
-        var item5 = parseInt($('#item5').val());
-        var item6 = parseInt($('#item6').val());
-        var item7 = parseInt($('#item7').val());
-        var item8 = parseInt($('#item8').val());
-        var item9 = parseInt($('#item9').val());
-        var item10 = parseInt($('#item10').val());
+        var item1 = parseInt($('#item1').val(), 10);
+        var item2 = parseInt($('#item2').val(), 10);
+        var item3 = parseInt($('#item3').val(), 10);
+        var item4 = parseInt($('#item4').val(), 10);
+        var item5 = parseInt($('#item5').val(), 10);
+        var item6 = parseInt($('#item6').val(), 10);
+        var item7 = parseInt($('#item7').val(), 10);
+        var item8 = parseInt($('#item8').val(), 10);
+        var item9 = parseInt($('#item9').val(), 10);
+        var item10 = parseInt($('#item10').val(), 10);
         
         // Set data to be sent to server
         var userData = {
@@ -264,7 +264,10 @@
             var currentURL = window.location.origin;
             // AJAX post the data to the friends API. 
             $.post(currentURL + "/api/friends", userData, function(data) {
-
+                console.log(data)
+                matchStatus.html('You found a new friend!')
+                modalBody.html(data.name)
+                $('.modal').modal('toggle');
 
 
             });
@@ -273,10 +276,9 @@
             matchStatus.html('Sorry, one or more questions have not been answered....');
             modalBody.html('Please check all answers on the form.');
             $('.modal').modal('toggle');
+            $('#friend-form').reset();
         }
     });
-    // clears form
-    $('#friend-form').reset();
 
 </script>
 </body>

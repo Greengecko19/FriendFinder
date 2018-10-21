@@ -1,0 +1,20 @@
+    $.post(currentURL + "/api/friends", userData, function(data) {
+            // If the data has a match, then show this
+        if (data.name !== undefined) {
+            matchStatus.html('Your match...');
+            modalBody.html('<p>...is ' + data.name + '!</p><img src="' + data.photo + '" height="200">');
+        } else {
+            // If no match, show this
+            matchStatus.html('Not enough data!');
+            modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
+        }
+        // Toggle modal on
+        $('.modal').modal('toggle');
+    });
+} else {
+        // If the form was not valid, this error is shown
+    matchStatus.html('Error...');
+    modalBody.html('Please answer all questions on the form.');
+    // Toggle modal on
+    $('.modal').modal('toggle');
+}
